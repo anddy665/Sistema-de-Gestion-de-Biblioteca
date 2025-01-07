@@ -22,24 +22,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center">Inicio de Sesión</h2>
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><?= $error ?></div>
-        <?php endif; ?>
-        <form method="POST" action="">
-            <div class="mb-3">
-                <label for="username" class="form-label">Usuario</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class=" card shadow-sm" style="max-width: 400px; width: 100%;">
+            <div class="card-body">
+                <h2 class="text-center">Inicio de Sesión</h2>
+                <?php if ($error): ?>
+                    <div class="alert alert-danger"><?= $error ?></div>
+                <?php endif; ?>
+                <form method="POST" action="">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Iniciar Sesión</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" name="password" required autocomplete="current-password">
-
-            </div>
-            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-        </form>
+        </div>
     </div>
+
     <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

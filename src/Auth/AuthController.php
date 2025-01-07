@@ -8,19 +8,18 @@ class AuthController
 {
     public function login($username, $password)
     {
-
-        error_log("Intento de inicio de sesión con el usuario: $username");
+        error_log("Login attempt with username: $username");
 
         $admin = (new Admin())->findByUsername($username);
 
         if (!$admin) {
-            error_log("No se encontró el usuario: $username");
-            return "-Usuario o contraseña inválidos.";
+            error_log("User not found: $username");
+            return "Invalid username or password.";
         }
 
         $password_check = password_verify(trim($password), $admin['password']);
 
-        error_log("Contraseña verificada: " . ($password_check ? "Correcta" : "Incorrecta"));
+        error_log("Password verification: " . ($password_check ? "Correct" : "Incorrect"));
 
         if ($admin && $password_check) {
             Session::start();
@@ -29,6 +28,7 @@ class AuthController
             exit;
         }
 
-        return "Usuario o contraseña inválidos.";
+        return "Invalid username or password.";
     }
 }
+
