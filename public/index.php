@@ -10,7 +10,6 @@ if (!Session::get('admin_id')) {
     exit;
 }
 
-
 include '../src/views/dashboard.php';
 ?>
 

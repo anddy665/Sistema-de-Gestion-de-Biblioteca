@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Auth;
 
 class Session
