@@ -27,7 +27,7 @@ document.getElementById('addUserForm').addEventListener('submit', function (even
                         if (data.success) {
                             const users = data.data;
                             const tableBody = document.getElementById('userListTableBody');
-                            tableBody.innerHTML = ''; // Limpia la tabla
+                            tableBody.innerHTML = '';
                             users.forEach(user => {
                                 tableBody.innerHTML += `
                                     <tr>
