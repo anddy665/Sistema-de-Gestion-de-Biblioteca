@@ -1,27 +1,54 @@
 document.getElementById('addUserForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevenir recarga de la página
 
     const formData = new FormData(this);
 
     fetch('/Sistema-de-Gestion-de-Biblioteca/src/Auth/addUser.php', {
         method: 'POST',
-        body: formData,
+        body: formData
     })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('User added successfully!');
-                // Opcional: Cierra el modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
-                modal.hide();
-
-                // Limpia el formulario
-                this.reset();
-
-                // Actualiza la tabla
-                loadUsers();
-            } else {
                 alert(data.message);
+                this.reset(); // Limpia el formulario
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+                modal.hide(); // Cierra el modal
+
+                // Actualiza la tabla de usuarios
+                fetch('/Sistema-de-Gestion-de-Biblioteca/ajax/users.php')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            const users = data.data;
+                            const tableBody = document.getElementById('userListTableBody');
+                            tableBody.innerHTML = ''; // Limpia la tabla
+                            users.forEach(user => {
+                                tableBody.innerHTML += `
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.full_name}</td>
+                                        <td>${user.email}</td>
+                                        <td>${user.phone_number}</td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm">Edit</button>
+                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                        } else {
+                            console.error('Error:', data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching users:', error));
+            } else {
+                alert('Error: ' + data.message);
             }
         })
         .catch(error => console.error('Error:', error));
