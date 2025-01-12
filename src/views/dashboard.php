@@ -46,7 +46,7 @@
 
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                 <h3 class="mb-3">User Management</h3>
-
+                <?php include 'edit-user-modal.php'; ?>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
                 <div class="user-list mt-3">
                     <h4 class="mb-3">Users List</h4>
@@ -116,6 +116,8 @@
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadUsers.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/addUser.js"></script>
 
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/editUser.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/deleteUser.js"></script>
 </body>
 
 </html>

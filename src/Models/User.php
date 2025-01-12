@@ -56,5 +56,34 @@ class User {
             return null;
         }
     }
+
+      // Actualizar usuario
+      public function update($id, $fullName, $email, $phoneNumber) {
+        try {
+            $sql = "UPDATE users SET full_name = :full_name, email = :email, phone_number = :phone_number WHERE id = :id";
+            $stmt = $this->db->connect()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':full_name', $fullName);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':phone_number', $phoneNumber);
+            return $stmt->execute();
+        } catch (\PDOException $e) {
+            echo "Error al actualizar usuario: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    // Eliminar usuario
+    public function delete($id) {
+        try {
+            $sql = "DELETE FROM users WHERE id = :id";
+            $stmt = $this->db->connect()->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            return $stmt->execute();
+        } catch (\PDOException $e) {
+            echo "Error al eliminar usuario: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 ?>
