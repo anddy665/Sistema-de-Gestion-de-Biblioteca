@@ -18,11 +18,11 @@ fetch("/Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
                         <td>${user.email}</td>
                         <td>${user.phone_number}</td>
                        <td>
-        <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
-            Edit
-        </button>
-        <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">Delete</button>
-    </td>
+                         <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
+                            Edit
+                         </button>
+                        <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">Delete</button>
+                       </td>
                     </tr>
                 `;
       });

@@ -11,5 +11,3 @@ if (!Session::get('admin_id')) {
 }
 
 include '../src/views/dashboard.php';
-?>
-

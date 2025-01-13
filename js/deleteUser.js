@@ -1,4 +1,3 @@
-// Al hacer clic en "Delete"
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-btn')) {
         const id = event.target.getAttribute('data-id');

@@ -61,9 +61,7 @@
                             </tr>
                         </thead>
                         <tbody id="userListTableBody">
-                            <!-- Aquí se llenarán los usuarios desde el backend -->
                         </tbody>
-                        <!-- Add User Modal -->
                         <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

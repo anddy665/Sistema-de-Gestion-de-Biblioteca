@@ -13,7 +13,6 @@ class DBConnection
     private $pass = 'root';
     private $connection;
 
-    // Método que establece la conexión a la base de datos
     public function connect()
     {
         if ($this->connection === null) {
@@ -24,7 +23,7 @@ class DBConnection
                 die("Database connection failed: " . $e->getMessage());
             }
         }
-        return $this->connection; // Retorna la conexión
+        return $this->connection;
     }
 
     public function getConnection()

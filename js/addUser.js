@@ -1,7 +1,7 @@
 document
   .getElementById("addUserForm")
   .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevenir recarga de la página
+    event.preventDefault();
 
     const formData = new FormData(this);
 
@@ -13,13 +13,13 @@ document
       .then((data) => {
         if (data.success) {
           alert(data.message);
-          this.reset(); // Limpia el formulario
+          this.reset();
           const modal = bootstrap.Modal.getInstance(
             document.getElementById("addUserModal")
           );
-          modal.hide(); // Cierra el modal
+          modal.hide();
 
-          // Actualiza la tabla de usuarios
+
           fetch("/Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
             .then((response) => {
               if (!response.ok) {
@@ -40,11 +40,11 @@ document
                                         <td>${user.email}</td>
                                         <td>${user.phone_number}</td>
                                         <td>
-        <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
-            Edit
-        </button>
-        <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">Delete</button>
-    </td>
+                                         <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
+                                          Edit
+                                         </button>
+                                         <button class="btn btn-danger btn-sm delete-btn" data-id="${user.id}">Delete</button>
+                                       </td>
                                     </tr>
                                 `;
                 });

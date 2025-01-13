@@ -6,7 +6,6 @@ require_once '../src/Auth/UserController.php';
 $userController = new \App\Auth\UserController();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
-    // Acción de crear usuario
     if ($_POST['action'] == 'create') {
         $fullName = $_POST['full_name'];
         $email = $_POST['email'];
@@ -16,4 +15,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
         exit();
     }
 }
-?>

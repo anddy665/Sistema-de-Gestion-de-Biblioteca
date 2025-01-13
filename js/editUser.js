@@ -1,4 +1,3 @@
-// Al hacer clic en "Edit"
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('edit-btn')) {
         const button = event.target;
@@ -7,18 +6,18 @@ document.addEventListener('click', (event) => {
         const email = button.getAttribute('data-email');
         const phoneNumber = button.getAttribute('data-phone-number');
 
-        // Prellenar el formulario de edición
+
         document.getElementById('editUserId').value = id;
         document.getElementById('editFullName').value = fullName;
         document.getElementById('editEmail').value = email;
         document.getElementById('editPhoneNumber').value = phoneNumber;
 
-        // Mostrar el modal de edición
+
         new bootstrap.Modal(document.getElementById('editUserModal')).show();
     }
 });
 
-// Manejar el envío del formulario de edición
+
 document.getElementById('editUserForm').addEventListener('submit', (event) => {
     event.preventDefault();
 

@@ -8,7 +8,6 @@ class User {
 
     public function __construct() {
         try {
-            // Inicializa la conexión a la base de datos utilizando el método 'connect()'
             $this->db = new DBConnection();
         } catch (\PDOException $e) {
             echo "Error de conexión: " . $e->getMessage();
@@ -16,7 +15,7 @@ class User {
         }
     }
 
-    // Crear un nuevo usuario
+
     public function create($fullName, $email, $phoneNumber) {
         try {
             $sql = "INSERT INTO users (full_name, email, phone_number) VALUES (:full_name, :email, :phone_number)";
@@ -31,7 +30,6 @@ class User {
         }
     }
 
-    // Obtener todos los usuarios
     public function getAll() {
         try {
             $sql = "SELECT * FROM users";
@@ -43,7 +41,7 @@ class User {
         }
     }
 
-    // Obtener un usuario por su ID
+ 
     public function getById($id) {
         try {
             $sql = "SELECT * FROM users WHERE id = :id";
@@ -57,7 +55,7 @@ class User {
         }
     }
 
-      // Actualizar usuario
+
       public function update($id, $fullName, $email, $phoneNumber) {
         try {
             $sql = "UPDATE users SET full_name = :full_name, email = :email, phone_number = :phone_number WHERE id = :id";
@@ -73,7 +71,7 @@ class User {
         }
     }
 
-    // Eliminar usuario
+
     public function delete($id) {
         try {
             $sql = "DELETE FROM users WHERE id = :id";
