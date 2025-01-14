@@ -38,11 +38,78 @@
         </ul>
 
         <div class="tab-content mt-3" id="libraryTabsContent">
-            <div class="tab-pane fade show active" id="books" role="tabpanel" aria-labelledby="books-tab">
-                <h3 class="mb-3">Library Management</h3>
-                <p>Aquí puedes gestionar los libros (Crear, Leer, Actualizar, Eliminar).</p>
-                <button class="btn btn-primary">Add New Book</button>
+        <div class="tab-pane fade show active" id="books" role="tabpanel" aria-labelledby="books-tab">
+    <h3 class="mb-3">Library Management</h3>
+    <p>Aquí puedes gestionar los libros (Crear, Leer, Actualizar, Eliminar).</p>
+    
+    <!-- Add New Book Button -->
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addBookModal">Add New Book</button>
+    
+    <!-- Books List Table -->
+    <div class="book-list mt-3">
+        <h4 class="mb-3">Books List</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Publication Year</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="bookListTableBody">
+                <!-- Book list rows will be dynamically loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Book Modal -->
+    <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addBookForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="author" class="form-label">Author</label>
+                            <input type="text" class="form-control" id="author" name="author" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Genre</label>
+                            <input type="text" class="form-control" id="genre" name="genre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="publicationYear" class="form-label">Publication Year</label>
+                            <input type="number" class="form-control" id="publicationYear" name="publication_year" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select" id="status" name="status" required>
+                                <option value="Available">Available</option>
+                                <option value="Borrowed">Borrowed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Book</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+</div>
+
 
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                 <h3 class="mb-3">User Management</h3>
@@ -112,8 +179,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/tabs.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadUsers.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadBooks.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/addUser.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/editUser.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/deleteUser.js"></script>
 </body>

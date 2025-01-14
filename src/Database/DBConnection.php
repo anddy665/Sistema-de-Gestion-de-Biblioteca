@@ -38,5 +38,5 @@ class DBConnection
         }
         return $this->connection;
     }
-    
 }
+?>
