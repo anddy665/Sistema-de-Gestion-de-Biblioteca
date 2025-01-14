@@ -40,10 +40,10 @@
         <div class="tab-content mt-3" id="libraryTabsContent">
         <div class="tab-pane fade show active" id="books" role="tabpanel" aria-labelledby="books-tab">
     <h3 class="mb-3">Library Management</h3>
-    <p>Aquí puedes gestionar los libros (Crear, Leer, Actualizar, Eliminar).</p>
     
     <!-- Add New Book Button -->
-    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addBookModal">Add New Book</button>
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addBookModal">Agregar Nuevo Libro</button>
+
     
     <!-- Books List Table -->
     <div class="book-list mt-3">
@@ -181,6 +181,7 @@
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadUsers.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadBooks.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/addUser.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/addBook.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/editUser.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/deleteUser.js"></script>
