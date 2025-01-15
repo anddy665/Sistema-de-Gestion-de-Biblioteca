@@ -1,4 +1,4 @@
-fetch("/Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
+fetch("./Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
   .then((response) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
