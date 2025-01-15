@@ -5,7 +5,7 @@ document
 
     const formData = new FormData(this);
 
-    fetch("./Sistema-de-Gestion-de-Biblioteca/src/Auth/addUser.php", {
+    fetch("/Sistema-de-Gestion-de-Biblioteca/src/Auth/addUser.php", {
       method: "POST",
       body: formData,
     })
@@ -20,7 +20,7 @@ document
           modal.hide();
 
 
-          fetch("./Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
+          fetch("/Sistema-de-Gestion-de-Biblioteca/ajax/users.php")
             .then((response) => {
               if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
