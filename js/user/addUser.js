@@ -5,7 +5,7 @@ document
 
     const formData = new FormData(this);
 
-    fetch("/Sistema-de-Gestion-de-Biblioteca/src/Auth/addUser.php", {
+    fetch("/Sistema-de-Gestion-de-Biblioteca/src/Users/addUser.php", {
       method: "POST",
       body: formData,
     })
