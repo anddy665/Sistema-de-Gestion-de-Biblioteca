@@ -111,11 +111,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/tabs.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/loadUsers.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/addUser.js"></script>
-
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/editUser.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/deleteUser.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/loadUsers.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/addUser.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/editUser.js"></script>
+    <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/deleteUser.js"></script>
 </body>
 
 </html>
