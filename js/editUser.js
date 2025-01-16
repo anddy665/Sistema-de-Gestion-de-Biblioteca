@@ -26,7 +26,7 @@ document.getElementById('editUserForm').addEventListener('submit', (event) => {
     const email = document.getElementById('editEmail').value;
     const phoneNumber = document.getElementById('editPhoneNumber').value;
 
-    fetch('/Sistema-de-Gestion-de-Biblioteca/ajax/users.php', {
+    fetch('/Sistema-de-Gestion-de-Biblioteca/api/users.php', {
         method: 'POST',
         body: new URLSearchParams({
             action: 'update',
