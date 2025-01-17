@@ -13,13 +13,22 @@ class User
         try {
             $this->db = new DBConnection();
         } catch (\PDOException $e) {
-            exit;
+            exit('Database connection failed: ' . $e->getMessage());
         }
     }
 
-
     public function create($fullName, $email, $phoneNumber)
     {
+        // Sanitization
+        $fullName = $this->sanitizeString($fullName);
+        $email = $this->sanitizeString($email);
+        $phoneNumber = $this->sanitizeString($phoneNumber);
+
+        // Validation
+        if (!$this->isValidEmail($email) || !$this->isValidPhoneNumber($phoneNumber)) {
+            return false; // Invalid data
+        }
+
         try {
             $sql = "INSERT INTO users (full_name, email, phone_number) VALUES (:full_name, :email, :phone_number)";
             $stmt = $this->db->connect()->prepare($sql);
@@ -39,18 +48,16 @@ class User
             $stmt = $this->db->connect()->query($sql);
             return $stmt->fetchAll();
         } catch (\PDOException $e) {
-
             return [];
         }
     }
-
 
     public function getById($id)
     {
         try {
             $sql = "SELECT * FROM users WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch();
         } catch (\PDOException $e) {
@@ -58,13 +65,22 @@ class User
         }
     }
 
-
     public function update($id, $fullName, $email, $phoneNumber)
     {
+        // Sanitization
+        $fullName = $this->sanitizeString($fullName);
+        $email = $this->sanitizeString($email);
+        $phoneNumber = $this->sanitizeString($phoneNumber);
+
+        // Validation
+        if (!$this->isValidEmail($email) || !$this->isValidPhoneNumber($phoneNumber)) {
+            return false; // Invalid data
+        }
+
         try {
             $sql = "UPDATE users SET full_name = :full_name, email = :email, phone_number = :phone_number WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->bindParam(':full_name', $fullName);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':phone_number', $phoneNumber);
@@ -74,16 +90,33 @@ class User
         }
     }
 
-
     public function delete($id)
     {
         try {
             $sql = "DELETE FROM users WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             return $stmt->execute();
         } catch (\PDOException $e) {
             return false;
         }
+    }
+
+    // Helper function to sanitize strings
+    private function sanitizeString($input)
+    {
+        return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
+    }
+
+    // Validate Email
+    private function isValidEmail($email)
+    {
+        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+    }
+
+    // Validate Phone Number (basic pattern, can be adjusted)
+    private function isValidPhoneNumber($phoneNumber)
+    {
+        return preg_match('/^[0-9\-\+]{7,15}$/', $phoneNumber);
     }
 }
