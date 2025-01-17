@@ -11,7 +11,12 @@ class Admin
 
     public function __construct()
     {
-        $this->db = (new DBConnection())->connect();
+        try {
+            $this->db = (new DBConnection())->connect();
+        } catch (\PDOException $e) {
+            error_log('Database connection failed in Admin::__construct: ' . $e->getMessage(), 0);
+            exit('Database connection failed. Check the error log for details.');
+        }
     }
 
     public function findByUsername($username)
@@ -24,10 +29,10 @@ class Admin
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
+            error_log('Error in Admin::findByUsername for username "' . $username . '": ' . $e->getMessage(), 0);
             return null;
         }
     }
-
 
     private function sanitizeString($input)
     {

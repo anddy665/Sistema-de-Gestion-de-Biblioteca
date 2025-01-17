@@ -19,14 +19,13 @@ class User
 
     public function create($fullName, $email, $phoneNumber)
     {
-        // Sanitization
+
         $fullName = $this->sanitizeString($fullName);
         $email = $this->sanitizeString($email);
         $phoneNumber = $this->sanitizeString($phoneNumber);
 
-        // Validation
         if (!$this->isValidEmail($email) || !$this->isValidPhoneNumber($phoneNumber)) {
-            return false; // Invalid data
+            return false;
         }
 
         try {
@@ -44,7 +43,7 @@ class User
     public function getAll()
     {
         try {
-            $sql = "SELECT * FROM users";
+            $sql = "SELECT * FROM ".USER_SLUG;
             $stmt = $this->db->connect()->query($sql);
             return $stmt->fetchAll();
         } catch (\PDOException $e) {
@@ -67,14 +66,14 @@ class User
 
     public function update($id, $fullName, $email, $phoneNumber)
     {
-        // Sanitization
+
         $fullName = $this->sanitizeString($fullName);
         $email = $this->sanitizeString($email);
         $phoneNumber = $this->sanitizeString($phoneNumber);
 
-        // Validation
+
         if (!$this->isValidEmail($email) || !$this->isValidPhoneNumber($phoneNumber)) {
-            return false; // Invalid data
+            return false;
         }
 
         try {
@@ -102,19 +101,19 @@ class User
         }
     }
 
-    // Helper function to sanitize strings
+
     private function sanitizeString($input)
     {
         return htmlspecialchars(strip_tags(trim($input)), ENT_QUOTES, 'UTF-8');
     }
 
-    // Validate Email
+
     private function isValidEmail($email)
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    // Validate Phone Number (basic pattern, can be adjusted)
+
     private function isValidPhoneNumber($phoneNumber)
     {
         return preg_match('/^[0-9\-\+]{7,15}$/', $phoneNumber);
