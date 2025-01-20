@@ -3,7 +3,7 @@ document.addEventListener('click', (event) => {
         const id = event.target.getAttribute('data-id');
 
         if (confirm('Are you sure you want to delete this user?')) {
-            fetch('./Sistema-de-Gestion-de-Biblioteca/api/users.php', {
+            fetch('/Sistema-de-Gestion-de-Biblioteca/api/users.php', {
                 method: 'POST',
                 body: new URLSearchParams({ action: 'delete', id }),
             })
