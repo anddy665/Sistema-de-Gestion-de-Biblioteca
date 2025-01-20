@@ -3,7 +3,7 @@ require_once '../src/Database/DBConnection.php';
 require_once '../src/Models/User.php';
 require_once '../src/Auth/UserController.php';
 
-$userController = new \App\Auth\UserController();
+$userController = new \App\Controller\UserController();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] == 'create') {

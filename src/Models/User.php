@@ -29,7 +29,7 @@ class User
         }
 
         try {
-            $sql = "INSERT INTO ".USER_SLUG." (full_name, email, phone_number) VALUES (:full_name, :email, :phone_number)";
+            $sql = "INSERT INTO " . USER_SLUG . " (full_name, email, phone_number) VALUES (:full_name, :email, :phone_number)";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':full_name', $fullName);
             $stmt->bindParam(':email', $email);
@@ -43,7 +43,7 @@ class User
     public function getAll()
     {
         try {
-            $sql = "SELECT * FROM ".USER_SLUG;
+            $sql = "SELECT * FROM " . USER_SLUG;
             $stmt = $this->db->connect()->query($sql);
             return $stmt->fetchAll();
         } catch (\PDOException $e) {
@@ -54,7 +54,7 @@ class User
     public function getById($id)
     {
         try {
-            $sql = "SELECT * FROM ".USER_SLUG." WHERE id = :id";
+            $sql = "SELECT * FROM " . USER_SLUG . " WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
@@ -77,7 +77,7 @@ class User
         }
 
         try {
-            $sql = "UPDATE ".USER_SLUG." SET full_name = :full_name, email = :email, phone_number = :phone_number WHERE id = :id";
+            $sql = "UPDATE " . USER_SLUG . " SET full_name = :full_name, email = :email, phone_number = :phone_number WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->bindParam(':full_name', $fullName);
@@ -92,7 +92,7 @@ class User
     public function delete($id)
     {
         try {
-            $sql = "DELETE FROM ".USER_SLUG." WHERE id = :id";
+            $sql = "DELETE FROM " . USER_SLUG . " WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             return $stmt->execute();
@@ -117,5 +117,31 @@ class User
     private function isValidPhoneNumber($phoneNumber)
     {
         return preg_match('/^[0-9\-\+]{7,15}$/', $phoneNumber);
+    }
+
+    public function getPaginated($limit, $offset)
+    {
+        try {
+            $sql = "SELECT * FROM " . USER_SLUG . " LIMIT :limit OFFSET :offset";
+            $stmt = $this->db->connect()->prepare($sql);
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (\PDOException $e) {
+            return [];
+        }
+    }
+
+    public function getTotalUsers()
+    {
+        try {
+            $sql = "SELECT COUNT(*) as total FROM " . USER_SLUG;
+            $stmt = $this->db->connect()->query($sql);
+            $result = $stmt->fetch();
+            return $result['total'];
+        } catch (\PDOException $e) {
+            return 0;
+        }
     }
 }
