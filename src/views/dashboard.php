@@ -108,9 +108,8 @@
         </div>
     </main>
 
-    <footer class="bg-light text-center py-3">
-        <p>&copy;2025 Library Management System. All rights reserved SMBS.</p>
-    </footer>
+    
+    <?php include 'footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/tab/tabs.js"></script>
