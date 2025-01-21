@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Auth;
+namespace App\Controller;
 
+use App\Auth\Session;
 use App\Models\Admin;
 
 class AuthController

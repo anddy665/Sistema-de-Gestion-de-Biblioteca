@@ -1,7 +1,9 @@
 <?php
+
+use App\Controller\AuthController;
+
 require '../vendor/autoload.php';
 
-use App\Auth\AuthController;
 
 $error = null;
 
