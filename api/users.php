@@ -10,10 +10,13 @@ require_once '../src/Controller/UserController.php';
 
 use App\Models\User;
 use App\Controller\UserController;
+use App\Database\DBConnection;
 
 try {
-    $user = new User();
-    $userController = new UserController();
+    $dbConnection = new DBConnection();
+    $user = new User($dbConnection);
+    $userController = new UserController($dbConnection);
+
 
 
     $method = $_SERVER['REQUEST_METHOD'];

@@ -8,14 +8,12 @@ class User
 {
     private $db;
 
-    public function __construct()
+    public function __construct(DBConnection $db)
     {
-        try {
-            $this->db = new DBConnection();
-        } catch (\PDOException $e) {
-            exit('Database connection failed: ' . $e->getMessage());
-        }
+        $this->db = $db;
     }
+
+
 
     public function create($fullName, $email, $phoneNumber)
     {

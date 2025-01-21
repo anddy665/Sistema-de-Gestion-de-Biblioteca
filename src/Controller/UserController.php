@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Models\User;
+use App\Database\DBConnection;
 
 class UserController
 {
     private $userModel;
 
-    public function __construct()
+    public function __construct(DBConnection $db)
     {
-        $this->userModel = new User();
+        $this->userModel = new User($db);
     }
 
     public function create($fullName, $email, $phoneNumber)
