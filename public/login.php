@@ -1,15 +1,8 @@
 <?php
-<<<<<<< HEAD
-require '../vendor/autoload.php';
-
-use App\Auth\AuthController;
-=======
 
 use App\Controller\AuthController;
 
 require '../vendor/autoload.php';
-
->>>>>>> 685bf3c4f6c32d952b3ad7545fbbb1c1397a02d2
 
 $error = null;
 
@@ -65,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 <<<<<<< HEAD
-</html>
-=======
+    </html>
+    =======
+
 </html>
 >>>>>>> 685bf3c4f6c32d952b3ad7545fbbb1c1397a02d2

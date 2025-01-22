@@ -25,8 +25,6 @@ class DBConnection
         }
         return $this->connection;
     }
-<<<<<<< HEAD
-=======
 
     public function getConnection()
     { {
@@ -46,5 +44,4 @@ class DBConnection
             return $this->connection;
         }
     }
->>>>>>> 685bf3c4f6c32d952b3ad7545fbbb1c1397a02d2
 }
