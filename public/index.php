@@ -11,5 +11,8 @@ if (!Session::get('admin_id')) {
 }
 
 include '../src/views/dashboard.php';
+<<<<<<< HEAD
 ?>
 
+=======
+>>>>>>> 685bf3c4f6c32d952b3ad7545fbbb1c1397a02d2
