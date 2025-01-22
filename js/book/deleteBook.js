@@ -1,5 +1,5 @@
 document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('delete-btn')) {
+    if (event.target.classList.contains('delete-book-btn')) {
         const id = event.target.getAttribute('data-id');
 
         if (confirm('Are you sure you want to delete this book?')) {
