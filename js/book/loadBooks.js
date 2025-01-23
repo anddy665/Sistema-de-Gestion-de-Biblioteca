@@ -12,7 +12,7 @@ function loadBooks(page = 1) {
         const tableBody = document.getElementById("bookListTableBody");
         tableBody.innerHTML = "";
         books.forEach((book) => {
-          console.log(book.id);  // Asegúrate de que el ID esté disponible
+          console.log(book.id);
           tableBody.innerHTML += `
             <tr>
                 <td>${book.id}</td>
@@ -31,8 +31,8 @@ function loadBooks(page = 1) {
           `;
         });
 
-        // Handle pagination (mismo código para la paginación)
-        const pagination = document.getElementById("pagination");
+
+        const pagination = document.getElementById("bookPagination");
         pagination.innerHTML = "";
 
         const prevPage = page > 1
@@ -59,5 +59,5 @@ function loadBooks(page = 1) {
     .catch((error) => console.error("Error fetching books:", error));
 }
 
-// Load books on page load
+
 loadBooks();

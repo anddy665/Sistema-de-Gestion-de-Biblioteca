@@ -6,29 +6,27 @@ require_once __DIR__ . '/../Database/DBConnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Sanitize input fields
+
     $title = sanitizeInput($_POST['title'] ?? '');
     $author = sanitizeInput($_POST['author'] ?? '');
     $genre = sanitizeInput($_POST['genre'] ?? '');
     $year = sanitizeInput($_POST['year'] ?? '');
     $status = trim($_POST['status'] ?? 'Available');
 
-    // Validate required fields
+
     if (empty($title) || empty($author) || empty($genre) || empty($year)) {
         echo json_encode(['success' => false, 'message' => 'Title, Author, Genre, and Year are required.']);
         exit;
     }
 
-    // Validate year (should be a four-digit number)
+
     if (!preg_match('/^\d{4}$/', $year)) {
         echo json_encode(['success' => false, 'message' => 'Invalid year format.']);
         exit;
     }
 
-    // Validate status
-    // Validar status
-    // Validar status
-    $validStatuses = ['Available', 'Borrowed'];  // Removed 'Reserved'
+
+    $validStatuses = ['Available', 'Borrowed'];
     if (!in_array($status, $validStatuses)) {
         echo json_encode(['success' => false, 'message' => 'Invalid book status.']);
         exit;
@@ -36,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     try {
-        // Connect to the database
+
         $db = new DBConnection('localhost', 'library', 'root', '');
         $connection = $db->getConnection();
 
-        // Insert the book into the database
+
         $stmt = $connection->prepare('INSERT INTO books (title, author, genre, publication_year, status) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$title, $author, $genre, $year, $status]);
 

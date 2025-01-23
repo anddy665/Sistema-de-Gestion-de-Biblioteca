@@ -1,31 +1,31 @@
-document.getElementById("addBookForm").addEventListener("submit", function(event) {
+document.getElementById("addBookForm").addEventListener("submit", function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    
-    const status = formData.get("status");  // Obtener el valor de status
-    console.log("Status to be submitted:", status);  // Verificar el valor de status
+
+    const status = formData.get("status");
+    console.log("Status to be submitted:", status);
 
     fetch("/Sistema-de-Gestion-de-Biblioteca/src/Books/addBook.php", {
         method: "POST",
         body: formData,
     })
-    .then((response) => response.json())
-    .then((data) => {
-        if (data.success) {
-            alert(data.message);
-            this.reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById("addBookModal"));
-            modal.hide();
-            
-            // Actualizar la lista de libros
-            fetch("/Sistema-de-Gestion-de-Biblioteca/api/books.php")
-                .then((response) => response.json())
-                .then((data) => {
-                    const books = data.data;
-                    const tableBody = document.getElementById("bookListTableBody");
-                    tableBody.innerHTML = "";
-                    books.forEach((book) => {
-                        tableBody.innerHTML += `
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                alert(data.message);
+                this.reset();
+                const modal = bootstrap.Modal.getInstance(document.getElementById("addBookModal"));
+                modal.hide();
+
+
+                fetch("/Sistema-de-Gestion-de-Biblioteca/api/books.php")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        const books = data.data;
+                        const tableBody = document.getElementById("bookListTableBody");
+                        tableBody.innerHTML = "";
+                        books.forEach((book) => {
+                            tableBody.innerHTML += `
                             <tr>
                                 <td>${book.id}</td>
                                 <td>${book.title}</td>
@@ -47,12 +47,12 @@ document.getElementById("addBookForm").addEventListener("submit", function(event
                                 </td>
                             </tr>
                         `;
-                    });
-                })
-                .catch((error) => console.error("Error fetching books:", error));
-        } else {
-            alert("Error: " + data.message);
-        }
-    })
-    .catch((error) => console.error("Error:", error));
+                        });
+                    })
+                    .catch((error) => console.error("Error fetching books:", error));
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch((error) => console.error("Error:", error));
 });
