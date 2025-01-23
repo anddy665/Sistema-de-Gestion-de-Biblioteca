@@ -26,11 +26,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="editBookStatus" class="form-label">Status</label>
-                        <select class="form-control" id="editBookStatus" name="status" required>
+                        <select class="form-select" id="editBookStatus" name="status" required>
                             <option value="Available">Available</option>
                             <option value="Borrowed">Borrowed</option>
-                            <option value="Reserved">Reserved</option>
                         </select>
+
                     </div>
                 </div>
                 <div class="modal-footer">

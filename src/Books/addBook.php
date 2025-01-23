@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $author = sanitizeInput($_POST['author'] ?? '');
     $genre = sanitizeInput($_POST['genre'] ?? '');
     $year = sanitizeInput($_POST['year'] ?? '');
-    $status = sanitizeInput($_POST['status'] ?? 'Available');
+    $status = trim($_POST['status'] ?? 'Available');
 
     // Validate required fields
     if (empty($title) || empty($author) || empty($genre) || empty($year)) {
@@ -26,11 +26,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Validate status
-    $validStatuses = ['Available', 'Borrowed'];
+    // Validar status
+    // Validar status
+    $validStatuses = ['Available', 'Borrowed'];  // Removed 'Reserved'
     if (!in_array($status, $validStatuses)) {
         echo json_encode(['success' => false, 'message' => 'Invalid book status.']);
         exit;
     }
+
 
     try {
         // Connect to the database
@@ -38,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $connection = $db->getConnection();
 
         // Insert the book into the database
-        $stmt = $connection->prepare('INSERT INTO books (title, author, genre, year, status) VALUES (?, ?, ?, ?, ?)');
+        $stmt = $connection->prepare('INSERT INTO books (title, author, genre, publication_year, status) VALUES (?, ?, ?, ?, ?)');
         $stmt->execute([$title, $author, $genre, $year, $status]);
 
         echo json_encode(['success' => true, 'message' => 'Book added successfully.']);

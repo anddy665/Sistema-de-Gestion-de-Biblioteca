@@ -86,11 +86,9 @@
                                         </div>
                                         <!-- Campo de Status agregado -->
                                         <div class="mb-3">
-                                            <label for="bookStatus" class="form-label">Status</label>
-                                            <select class="form-select" id="bookStatus" name="status" required>
-                                                <option value="available">Available</option>
-                                                <option value="borrowed">Borrowed</option>
-                                                <option value="reserved">Reserved</option>
+                                            <select class="form-control" id="editBookStatus" name="status" required>
+                                                <option value="Available">Available</option>
+                                                <option value="Borrowed">Borrowed</option>
                                             </select>
                                         </div>
                                     </div>
