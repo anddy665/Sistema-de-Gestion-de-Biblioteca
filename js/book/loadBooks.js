@@ -31,7 +31,6 @@ function loadBooks(page = 1) {
                       Edit
                     </button>
                    <button class="btn btn-danger btn-sm delete-book-btn" data-id="${book.id}">Delete</button>
-
                   </td>
               </tr>
             `;

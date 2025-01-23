@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="editBookForm">
-                <input type="hidden" id="editBookId">
+            <input type="hidden" id="editBookId"> 
                 <div class="modal-header">
                     <h5 class="modal-title" id="editBookModalLabel">Edit Book</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
