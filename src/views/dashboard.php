@@ -84,7 +84,6 @@
                                             <label for="bookYear" class="form-label">Publication Year</label>
                                             <input type="number" class="form-control" id="bookYear" name="year" required>
                                         </div>
-                                        <!-- Campo de Status agregado -->
                                         <div class="mb-3">
                                             <select class="form-control" id="editBookStatus" name="status" required>
                                                 <option value="Available">Available</option>
