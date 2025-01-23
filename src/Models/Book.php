@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-
 use App\Database\DBConnection;
-use PDO;
 
 class Book
 {
@@ -15,24 +13,26 @@ class Book
         $this->db = $db;
     }
 
-    public function create($title, $author, $genre, $year)
+    public function create($title, $author, $genre, $publicationYear, $status)
     {
         $title = $this->sanitizeString($title);
         $author = $this->sanitizeString($author);
         $genre = $this->sanitizeString($genre);
-        $year = (int)$year;
+        $publicationYear = intval($publicationYear);
+        $status = $this->sanitizeString($status);
 
-        if (!$this->isValidYear($year)) {
+        if (!$this->isValidYear($publicationYear) || !$this->isValidStatus($status)) {
             return false;
         }
 
         try {
-            $sql = "INSERT INTO " . BOOK_SLUG . " (title, author, genre, publication_year) VALUES (:title, :author, :genre, :year)";
+            $sql = "INSERT INTO " . BOOK_SLUG . " (title, author, genre, publication_year, status) VALUES (:title, :author, :genre, :publication_year, :status)";
             $stmt = $this->db->connect()->prepare($sql);
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':author', $author);
             $stmt->bindParam(':genre', $genre);
-            $stmt->bindParam(':year', $year);
+            $stmt->bindParam(':publication_year', $publicationYear, \PDO::PARAM_INT);
+            $stmt->bindParam(':status', $status);
             return $stmt->execute();
         } catch (\PDOException $e) {
             return false;
@@ -44,7 +44,7 @@ class Book
         try {
             $sql = "SELECT * FROM " . BOOK_SLUG;
             $stmt = $this->db->connect()->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll();
         } catch (\PDOException $e) {
             return [];
         }
@@ -55,33 +55,35 @@ class Book
         try {
             $sql = "SELECT * FROM " . BOOK_SLUG . " WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetch();
         } catch (\PDOException $e) {
             return null;
         }
     }
 
-    public function update($id, $title, $author, $genre, $year)
+    public function update($id, $title, $author, $genre, $publicationYear, $status)
     {
         $title = $this->sanitizeString($title);
         $author = $this->sanitizeString($author);
         $genre = $this->sanitizeString($genre);
-        $year = (int)$year;
+        $publicationYear = intval($publicationYear);
+        $status = $this->sanitizeString($status);
 
-        if (!$this->isValidYear($year)) {
+        if (!$this->isValidYear($publicationYear) || !$this->isValidStatus($status)) {
             return false;
         }
 
         try {
-            $sql = "UPDATE " . BOOK_SLUG . " SET title = :title, author = :author, genre = :genre, publication_year = :year WHERE id = :id";
+            $sql = "UPDATE " . BOOK_SLUG . " SET title = :title, author = :author, genre = :genre, publication_year = :publication_year, status = :status WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':author', $author);
             $stmt->bindParam(':genre', $genre);
-            $stmt->bindParam(':year', $year);
+            $stmt->bindParam(':publication_year', $publicationYear, \PDO::PARAM_INT);
+            $stmt->bindParam(':status', $status);
             return $stmt->execute();
         } catch (\PDOException $e) {
             return false;
@@ -93,7 +95,7 @@ class Book
         try {
             $sql = "DELETE FROM " . BOOK_SLUG . " WHERE id = :id";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
             return $stmt->execute();
         } catch (\PDOException $e) {
             return false;
@@ -107,8 +109,13 @@ class Book
 
     private function isValidYear($year)
     {
-        $currentYear = date("Y");
-        return $year > 0 && $year <= $currentYear;
+        return is_numeric($year) && $year > 0 && $year <= intval(date("Y"));
+    }
+
+    private function isValidStatus($status)
+    {
+        $validStatuses = ['Available', 'Borrowed'];
+        return in_array($status, $validStatuses);
     }
 
     public function getPaginated($limit, $offset)
@@ -116,10 +123,10 @@ class Book
         try {
             $sql = "SELECT * FROM " . BOOK_SLUG . " LIMIT :limit OFFSET :offset";
             $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-            $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll();
         } catch (\PDOException $e) {
             return [];
         }
@@ -130,7 +137,7 @@ class Book
         try {
             $sql = "SELECT COUNT(*) as total FROM " . BOOK_SLUG;
             $stmt = $this->db->connect()->query($sql);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch();
             return $result['total'];
         } catch (\PDOException $e) {
             return 0;

@@ -6,30 +6,40 @@ require_once __DIR__ . '/../Database/DBConnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Sanitize input fields
     $title = sanitizeInput($_POST['title'] ?? '');
     $author = sanitizeInput($_POST['author'] ?? '');
     $genre = sanitizeInput($_POST['genre'] ?? '');
     $year = sanitizeInput($_POST['year'] ?? '');
+    $status = sanitizeInput($_POST['status'] ?? 'Available');
 
-    // Validar los campos obligatorios
-    if (empty($title) || empty($author)) {
-        echo json_encode(['success' => false, 'message' => 'Title and Author are required.']);
+    // Validate required fields
+    if (empty($title) || empty($author) || empty($genre) || empty($year)) {
+        echo json_encode(['success' => false, 'message' => 'Title, Author, Genre, and Year are required.']);
         exit;
     }
 
-    // Validar el año como un número válido
-    if (!empty($year) && (!is_numeric($year) || $year < 0)) {
+    // Validate year (should be a four-digit number)
+    if (!preg_match('/^\d{4}$/', $year)) {
         echo json_encode(['success' => false, 'message' => 'Invalid year format.']);
         exit;
     }
 
+    // Validate status
+    $validStatuses = ['Available', 'Borrowed'];
+    if (!in_array($status, $validStatuses)) {
+        echo json_encode(['success' => false, 'message' => 'Invalid book status.']);
+        exit;
+    }
+
     try {
+        // Connect to the database
         $db = new DBConnection('localhost', 'library', 'root', '');
         $connection = $db->getConnection();
 
-        // Insertar el libro en la base de datos
-        $stmt = $connection->prepare('INSERT INTO books (title, author, genre, publication_year, status) VALUES (?, ?, ?, ?, ?)');
-        $stmt->execute([$title, $author, $genre, $year, 'Available']);
+        // Insert the book into the database
+        $stmt = $connection->prepare('INSERT INTO books (title, author, genre, year, status) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$title, $author, $genre, $year, $status]);
 
         echo json_encode(['success' => true, 'message' => 'Book added successfully.']);
     } catch (PDOException $e) {

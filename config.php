@@ -5,3 +5,4 @@ error_reporting(E_ALL);
 define('USER_SLUG', 'users');
 define('BOOK_SLUG', 'books');
 
+

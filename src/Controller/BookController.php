@@ -14,9 +14,9 @@ class BookController
         $this->bookModel = new Book($db);
     }
 
-    public function create($title, $author, $genre, $year)
+    public function create($title, $author, $genre, $year, $status)
     {
-        return $this->bookModel->create($title, $author, $genre, $year);
+        return $this->bookModel->create($title, $author, $genre, $year, $status);
     }
 
     public function getAllBooks()
@@ -36,18 +36,16 @@ class BookController
         $author = $_POST['author'] ?? '';
         $genre = $_POST['genre'] ?? '';
         $year = $_POST['year'] ?? '';
+        $status = $_POST['status'] ?? 'Available';
 
         if ($id && $title && $author && $genre && $year) {
-            $success = $this->bookModel->update($id, $title, $author, $genre, $year);
+            $success = $this->bookModel->update($id, $title, $author, $genre, $year, $status);
             echo json_encode([
                 'success' => $success,
                 'message' => $success ? 'Book updated successfully.' : 'Failed to update book.'
             ]);
         } else {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid data provided.'
-            ]);
+            echo json_encode(['success' => false, 'message' => 'Invalid data provided.']);
         }
     }
 
@@ -62,20 +60,7 @@ class BookController
                 'message' => $success ? 'Book deleted successfully.' : 'Failed to delete book.'
             ]);
         } else {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Invalid data provided.'
-            ]);
+            echo json_encode(['success' => false, 'message' => 'Invalid data provided.']);
         }
-    }
-
-    public function getPaginatedBooks($limit, $offset)
-    {
-        return $this->bookModel->getPaginated($limit, $offset);
-    }
-
-    public function getTotalBooks()
-    {
-        return $this->bookModel->getTotalBooks();
     }
 }

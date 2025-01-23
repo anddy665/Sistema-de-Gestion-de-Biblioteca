@@ -84,12 +84,22 @@
                                             <label for="bookYear" class="form-label">Publication Year</label>
                                             <input type="number" class="form-control" id="bookYear" name="year" required>
                                         </div>
+                                        <!-- Campo de Status agregado -->
+                                        <div class="mb-3">
+                                            <label for="bookStatus" class="form-label">Status</label>
+                                            <select class="form-select" id="bookStatus" name="status" required>
+                                                <option value="available">Available</option>
+                                                <option value="borrowed">Borrowed</option>
+                                                <option value="reserved">Reserved</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Add Book</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

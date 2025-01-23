@@ -5,15 +5,15 @@ document.addEventListener('click', (event) => {
         const title = button.getAttribute('data-title');
         const author = button.getAttribute('data-author');
         const genre = button.getAttribute('data-genre');
-        const publicationYear = button.getAttribute('data-publication-year');
+        const year = button.getAttribute('data-year');
         const status = button.getAttribute('data-status');
 
         document.getElementById('editBookId').value = id;
-        document.getElementById('editTitle').value = title;
-        document.getElementById('editAuthor').value = author;
-        document.getElementById('editGenre').value = genre;
-        document.getElementById('editPublicationYear').value = publicationYear;
-        document.getElementById('editStatus').value = status;
+        document.getElementById('editBookTitle').value = title;
+        document.getElementById('editBookAuthor').value = author;
+        document.getElementById('editBookGenre').value = genre;
+        document.getElementById('editBookYear').value = year;
+        document.getElementById('editBookStatus').value = status;
 
         new bootstrap.Modal(document.getElementById('editBookModal')).show();
     }
@@ -23,11 +23,11 @@ document.getElementById('editBookForm').addEventListener('submit', (event) => {
     event.preventDefault();
 
     const id = document.getElementById('editBookId').value;
-    const title = document.getElementById('editTitle').value;
-    const author = document.getElementById('editAuthor').value;
-    const genre = document.getElementById('editGenre').value;
-    const publicationYear = document.getElementById('editPublicationYear').value;
-    const status = document.getElementById('editStatus').value;
+    const title = document.getElementById('editBookTitle').value;
+    const author = document.getElementById('editBookAuthor').value;
+    const genre = document.getElementById('editBookGenre').value;
+    const year = document.getElementById('editBookYear').value;
+    const status = document.getElementById('editBookStatus').value;
 
     fetch('/Sistema-de-Gestion-de-Biblioteca/api/books.php', {
         method: 'POST',
@@ -37,8 +37,8 @@ document.getElementById('editBookForm').addEventListener('submit', (event) => {
             title,
             author,
             genre,
-            publication_year: publicationYear,
-            status,
+            year,
+            status
         }),
     })
         .then(response => response.json())
