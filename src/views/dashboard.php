@@ -16,7 +16,7 @@
 <body class="d-flex flex-column vh-100">
     <?php include __DIR__ . '/header.php'; ?>
 
-    <main class="container flex-grow-1 mt-4 content-container">
+    <main class="container flex-grow-1 mt-5 mb-5 p-4">
         <h2 class="text-center mb-4">Library Management System</h2>
 
         <ul class="nav nav-tabs" id="libraryTabs" role="tablist">

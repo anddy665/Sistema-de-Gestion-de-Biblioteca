@@ -57,9 +57,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-<<<<<<< HEAD
-    </html>
-    =======
 
 </html>
->>>>>>> 685bf3c4f6c32d952b3ad7545fbbb1c1397a02d2
