@@ -44,8 +44,7 @@ document.getElementById('editBookForm').addEventListener('submit', (event) => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log(data)
-                alert(data);
+                alert('Book updated successfully!');
                 location.reload();
             } else {
                 alert(data.message);
