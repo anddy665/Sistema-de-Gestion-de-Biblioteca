@@ -1,5 +1,5 @@
 document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('edit-btn')) {
+    if (event.target.classList.contains('bookEdit')) {
         const button = event.target;
         const id = button.getAttribute('data-id');
         const title = button.getAttribute('data-title');

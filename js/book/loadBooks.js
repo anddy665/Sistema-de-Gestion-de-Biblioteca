@@ -21,7 +21,7 @@ function loadBooks(page = 1) {
                 <td>${book.publication_year}</td>
                 <td>${book.status}</td>
                 <td>
-                  <button class="btn btn-warning btn-sm edit-btn" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-genre="${book.genre}" data-publication-year="${book.publication_year}" data-status="${book.status}">
+                  <button class="btn btn-warning btn-sm edit-btn  bookEdit" data-id="${book.id}" data-title="${book.title}" data-author="${book.author}" data-genre="${book.genre}" data-publication-year="${book.publication_year}" data-status="${book.status}">
                     Edit
                   </button>
                   <button class="btn btn-danger btn-sm delete-book-btn" data-id="${book.id}">Delete</button>

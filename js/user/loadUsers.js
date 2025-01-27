@@ -19,7 +19,7 @@ function loadUsers(page = 1) {
                 <td>${user.email}</td>
                 <td>${user.phone_number}</td>
                 <td>
-                  <button class="btn btn-warning btn-sm edit-btn" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
+                  <button class="btn btn-warning btn-sm edit-btn userEdit" data-id="${user.id}" data-full-name="${user.full_name}" data-email="${user.email}" data-phone-number="${user.phone_number}">
                     Edit
                   </button>
                   <button class="btn btn-danger btn-sm delete-user-btn" data-id="${user.id}">Delete</button>
