@@ -19,6 +19,12 @@ document.addEventListener('click', (event) => {
     }
 });
 
+document.addEventListener('hidden.bs.modal', function (event) {
+    const backdrops = document.querySelectorAll('.modal-backdrop');
+    backdrops.forEach(backdrop => backdrop.remove());
+});
+
+
 document.getElementById('editBookForm').addEventListener('submit', (event) => {
     event.preventDefault();
 

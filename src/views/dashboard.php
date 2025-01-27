@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .content-container {
             overflow-y: auto;
@@ -40,7 +40,7 @@
         <div class="tab-content mt-3" id="libraryTabsContent">
             <div class="tab-pane fade show active" id="books" role="tabpanel" aria-labelledby="books-tab">
                 <h3 class="mb-3">Books Management</h3>
-                <?php include 'edit-book-modal.php'; ?>
+               
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBookModal">Add New Book</button>
                 <div class="book-list mt-3">
                     <h4 class="mb-3">Books List</h4>
@@ -109,7 +109,7 @@
 
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                 <h3 class="mb-3">User Management</h3>
-                <?php include 'edit-user-modal.php'; ?>
+                
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
                 <div class="user-list mt-3">
                     <h4 class="mb-3">Users List</h4>
@@ -169,6 +169,8 @@
                 <button class="btn btn-primary">Register Loan</button>
             </div>
         </div>
+        <?php include 'edit-user-modal.php'; ?>
+        <?php include 'edit-book-modal.php'; ?>
     </main>
 
 
