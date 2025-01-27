@@ -12,7 +12,6 @@ function loadBooks(page = 1) {
         const tableBody = document.getElementById("bookListTableBody");
         tableBody.innerHTML = "";
         books.forEach((book) => {
-          console.log(book.id);
           tableBody.innerHTML += `
             <tr>
                 <td>${book.id}</td>
