@@ -39,77 +39,16 @@
 
         <div class="tab-content mt-3" id="libraryTabsContent">
             <div class="tab-pane fade show active" id="books" role="tabpanel" aria-labelledby="books-tab">
-                <h3 class="mb-3">Books Management</h3>
-               
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBookModal">Add New Book</button>
-                <div class="book-list mt-3">
-                    <h4 class="mb-3">Books List</h4>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Genre</th>
-                                <th>Year</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookListTableBody">
-                        </tbody>
-                    </table>
-                    <div class="modal fade" id="addBookModal" tabindex="-1" aria-labelledby="addBookModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form id="addBookForm">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label for="bookTitle" class="form-label">Title</label>
-                                            <input type="text" class="form-control" id="bookTitle" name="title" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="bookAuthor" class="form-label">Author</label>
-                                            <input type="text" class="form-control" id="bookAuthor" name="author" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="bookGenre" class="form-label">Genre</label>
-                                            <input type="text" class="form-control" id="bookGenre" name="genre" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="bookYear" class="form-label">Publication Year</label>
-                                            <input type="number" class="form-control" id="bookYear" name="year" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <select class="form-control" id="editBookStatus" name="status" required>
-                                                <option value="Available">Available</option>
-                                                <option value="Borrowed">Borrowed</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Add Book</button>
-                                    </div>
-                                </form>
+                <h3 class="mb-3">Library Management</h3>
 
-                            </div>
-                        </div>
-                    </div>
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination" id="bookPagination"></ul>
-                    </nav>
-                </div>
+                <p>Aquí puedes gestionar los libros (Crear, Leer, Actualizar, Eliminar).</p>
+                <button class="btn btn-primary">Add New Book</button>
             </div>
 
 
             <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
                 <h3 class="mb-3">User Management</h3>
-                
+
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
                 <div class="user-list mt-3">
                     <h4 class="mb-3">Users List</h4>
@@ -170,7 +109,7 @@
             </div>
         </div>
         <?php include 'edit-user-modal.php'; ?>
-        <?php include 'edit-book-modal.php'; ?>
+
     </main>
 
 
@@ -181,10 +120,7 @@
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/addUser.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/editUser.js"></script>
     <script src="/Sistema-de-Gestion-de-Biblioteca/js/user/deleteUser.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/book/addBook.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/book/deleteBook.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/book/editBook.js"></script>
-    <script src="/Sistema-de-Gestion-de-Biblioteca/js/book/loadBooks.js"></script>
+
 </body>
 
 </html>
