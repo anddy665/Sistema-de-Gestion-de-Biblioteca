@@ -18,21 +18,25 @@ try {
     $userController = new UserController($dbConnection);
 
 
-
     $method = $_SERVER['REQUEST_METHOD'];
+
 
     if ($method === 'POST') {
         $action = $_POST['action'] ?? '';
 
         switch ($action) {
+            case 'create':
+
+                $userController->createUser();
+                break;
             case 'update':
+
                 $userController->updateUser();
                 break;
-
             case 'delete':
+
                 $userController->deleteUser();
                 break;
-
             default:
                 echo json_encode(['success' => false, 'message' => 'Invalid action.']);
                 break;
@@ -45,10 +49,8 @@ try {
         $limit = max(1, $limit);
         $offset = ($page - 1) * $limit;
 
-
         $users = $user->getPaginated($limit, $offset);
         $totalUsers = $user->getTotalUsers();
-
 
         echo json_encode([
             'success' => true,
