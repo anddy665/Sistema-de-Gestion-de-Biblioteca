@@ -6,7 +6,7 @@ document
     const formData = new FormData(this);
     formData.append('action', 'create')
 
-    fetch("/Sistema-de-Gestion-de-Biblioteca/api/users.php", {
+    fetch("/Sistema-de-Gestion-de-Biblioteca/src/Controller/UserController.php", {
       method: "POST",
       body: formData,
     })
@@ -20,7 +20,7 @@ document
           );
           modal.hide();
 
-          fetch("/Sistema-de-Gestion-de-Biblioteca/api/users.php")
+          fetch("/Sistema-de-Gestion-de-Biblioteca/src/Controller/UserController.php")
             .then((response) => response.json())
             .then((data) => {
               const users = data.data;

@@ -1,5 +1,5 @@
 function loadUsers(page = 1) {
-  fetch(`/Sistema-de-Gestion-de-Biblioteca/api/users.php?page=${page}&limit=10`)
+  fetch(`/Sistema-de-Gestion-de-Biblioteca/src/Controller/UserController.php?page=${page}&limit=10`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -28,14 +28,11 @@ function loadUsers(page = 1) {
           `;
         });
 
-
         const pagination = document.getElementById("pagination");
         pagination.innerHTML = "";
 
-
         const prevPage = page > 1 ? `<li class="page-item"><a class="page-link" href="#" onclick="loadUsers(${page - 1})">Previous</a></li>` : '';
         pagination.innerHTML += prevPage;
-
 
         for (let i = 1; i <= data.total_pages; i++) {
           pagination.innerHTML += `
@@ -45,7 +42,6 @@ function loadUsers(page = 1) {
           `;
         }
 
-
         const nextPage = page < data.total_pages ? `<li class="page-item"><a class="page-link" href="#" onclick="loadUsers(${page + 1})">Next</a></li>` : '';
         pagination.innerHTML += nextPage;
       } else {
@@ -54,6 +50,5 @@ function loadUsers(page = 1) {
     })
     .catch((error) => console.error("Error fetching users:", error));
 }
-
 
 loadUsers();
