@@ -38,16 +38,21 @@ class User
         }
     }
 
-    public function getAll()
+    public function getAllUsers($limit, $offset)
     {
         try {
-            $sql = "SELECT * FROM " . USER_SLUG;
-            $stmt = $this->db->connect()->query($sql);
+            $sql = "SELECT * FROM " . USER_SLUG . " LIMIT :limit OFFSET :offset";
+            $stmt = $this->db->connect()->prepare($sql);
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
+            $stmt->execute();
             return $stmt->fetchAll();
         } catch (\PDOException $e) {
             return [];
         }
     }
+
+
 
     public function getById($id)
     {
@@ -117,19 +122,6 @@ class User
         return preg_match('/^[0-9\-\+]{7,15}$/', $phoneNumber);
     }
 
-    public function getPaginated($limit, $offset)
-    {
-        try {
-            $sql = "SELECT * FROM " . USER_SLUG . " LIMIT :limit OFFSET :offset";
-            $stmt = $this->db->connect()->prepare($sql);
-            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
-            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (\PDOException $e) {
-            return [];
-        }
-    }
 
     public function getTotalUsers()
     {

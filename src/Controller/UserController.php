@@ -60,7 +60,7 @@ class UserController
         $limit = max(1, $limit);
         $offset = ($page - 1) * $limit;
 
-        $users = $this->userModel->getPaginated($limit, $offset);
+        $users = $this->userModel->getAllUsers($limit, $offset);
         $totalUsers = $this->userModel->getTotalUsers();
 
         echo json_encode([
